@@ -15,13 +15,12 @@
 
 .I Concept:
 
-    -
-
+    - A basic method of analog synthesis is to patch together self 
     - Csound uses this paradigm modules are called unit generators, patch cords are signal variables.
 
 .I So:
 
-.TA - write a "patch specification language"(PSL). A simple "language"(program) to transtate patch specifications to csound orchestra.
+    - write a "patch specification language"(PSL). A simple "language"(program) to transtate patch specifications to csound orchestra.
 
 .I How?:
 
