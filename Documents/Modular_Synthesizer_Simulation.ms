@@ -1,6 +1,6 @@
-.ND [xxx]
+.TL A Modular Synth Simulation
+.AU Joel Nash
 
-\fBNotes from Eric Lyons chapter in The Audio Programing Book\fR
 
 .LP 
  - one of the earliest ideas in computer music.
@@ -15,22 +15,32 @@
 
 .I Concept:
 
-    - A basic method of analog synthesis is to patch together self 
+    - A basic method of analog synthesis is to patch together self contained modules that generate or modify electric signals.
     - Csound uses this paradigm modules are called unit generators, patch cords are signal variables.
 
-.I So:
+.I So, there are two parts:
 
-    - write a "patch specification language"(PSL). A simple "language"(program) to transtate patch specifications to csound orchestra.
+	1. Write a "patch specification language"(PSL). A simple "language"(program) to transtate patch specifications to csound orchestra.
 
-.I How?:
-
-	- The programme will algorithmically generate patch specifications, automating the sound design process.
+	2. Develop it into a programme will algorithmically generate patch specifications, automating the sound design process.
 
 .I Why?... 
 
  ...PSL instead of writing Csound code? It should encourage creation of more complex patches, as PSL is more convenient.
 
- - then 
+\fBWhich analogue modules shall we model?\fR
+
+    - Oscillator
+    - Filter
+    - Sample and hold unit
+    - Noise
+
+
+
+
+
+
+
 
 \fBUnit Generators (Modules) / interface design\fR
 
@@ -90,6 +100,8 @@ on the command line using:
 \fB Tightening the Structure and Making It Safer (note: xtremeprgramming.com) \fR
 
 At the moment there are a maxium of 256 OSCS.
+
+.I When we print the Oscillators to csound code.
 
 Next I think is the algorithm for the Frequency and ...
 If the minimum frequency is !=-1.0 and if maximum frequency is !=1.0
