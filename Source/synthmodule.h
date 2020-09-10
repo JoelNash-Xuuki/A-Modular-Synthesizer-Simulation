@@ -80,5 +80,4 @@ void write_csound_oscillator(OSCILLATOR_MODULE oscillator_module){
 				oscillator_module.output_signal,
 				rescale_output);
 }
-
 #endif
