@@ -15,7 +15,7 @@ typedef struct{
 	char max_frequency [SYNTH_MODULE_CHARS];
 } OSCILLATOR_MODULE;
 
-void read_osc(OSCILLATOR_MODULE *oscillator_module, int count){
+void read_oscillator(OSCILLATOR_MODULE *oscillator_module, int count){
 
 	scanf("%s", oscs[osc_count].signal_out);
 	scanf("%s", oscs[osc_count].frequency);
@@ -46,36 +46,42 @@ void write_csound_oscillator(OSCILLATOR_MODULE oscillator_module){
 
 	if(!strcmp(oscillator_module.am_signal, "NONE"))
 		printf("1.0, ");
+
 	else
 		printf("%s, ", oscillator_module.am_signal);
 	
 	if(!strcmp(oscillator_module.waveform, "SINE"))
 		printf("isine\n");
+
 	else if(!strcmp(oscillator_module.waveform, "TRIANGLE"))
 		printf("itriangle");
+
 	else if(!strcmp(oscillator_module.waveform, "SAWTOOTH"))
 		printf("isawtooth");
+
 	else if(!strcmp(oscillator_module.waveform, "SQUARE"))
 		printf("isquare"); 
+
 	else if(!strcmp(oscillator_module.waveform, "PULSE"))
 		printf("ipulse");
+
 	else{
 		fprintf(not_valid, "oscillator_module: %s is unknown"
 			"- using sinewave instead\n", oscillator_module.waveform);
 		printf("isine\n");
 	}
 
-	sscanf(oscillator_module.min_frequency, "%f", &min_frequency;
-	sscanf(oscillator_module.max_frequency, "%f", &max_frequency;
+	sscanf(oscillator_module.min_amp, "%f", &min_amp;
+	sscanf(oscillator_module.max_amp, "%f", &max_amp;
 
-	if(oscillator_module.min_frequency != -1.0 || oscillator_module.max_frequency != 1.0){
+	if(oscillator_module.min_amp != -1.0 || oscillator_module.max_amp != 1.0){
 
-		rescale_output = (min_frequency - max_frequency) / 2.0; 
+		rescale_output = (min_amp - max_amp) / 2.0; 
 
 		printf("%s = %s + (%f*%s + %f)\n",
 				oscillator_module.output_signal, 
-				oscillator_module.min_frequency, 
-				oscillator_module.max_frequency,
+				oscillator_module.min_amp, 
+				oscillator_module.max_amp,
 				rescale_output,
 				oscillator_module.output_signal,
 				rescale_output);

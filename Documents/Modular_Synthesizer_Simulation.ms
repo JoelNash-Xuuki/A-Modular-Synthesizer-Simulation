@@ -1,14 +1,17 @@
-.TL A Modular Synth Simulation
-.AU Joel Nash
+.RP
 
+.TL Modular Synth Simulation
+
+.AB[no]
 
 .LP 
- - one of the earliest ideas in computer music.
+\fBA little back ground...\fR
+ - A modulular synth simulation is one of the earliest ideas in computer music.
  - Bell Labs 1950's (including Max Mathews) 
  recognised that analog electronic circuits could be understood 
- performing mathematical operations that can be modeled digitally.
- - Digital signal = analog signal.
- - Previous programs BLODI, Music I-V....acoustic compiler.
+ performing mathematical operations that can be modelled digitally.
+
+ - Previous programs BLODI, Music I-V....acoustic compilers.
 
 
 \fBBasic design\fR
@@ -16,9 +19,9 @@
 .I Concept:
 
     - A basic method of analog synthesis is to patch together self contained modules that generate or modify electric signals.
-    - Csound uses this paradigm modules are called unit generators, patch cords are signal variables.
+    - Csound uses this paradigm, instead of modules csound has unit generators and patch cords are signal variables.
 
-.I So, there are two parts:
+So, there are are two parts to this investigation:
 
 	1. Write a "patch specification language"(PSL). A simple "language"(program) to transtate patch specifications to csound orchestra.
 
@@ -34,6 +37,10 @@
     - Filter
     - Sample and hold unit
     - Noise
+
+\fBLets look at the patch Specification for an oscillator.\fR 
+
+A primary function of an ocillator
 
 
 
@@ -51,15 +58,18 @@
              - Adjust Frequency.
              - Frequency Modulate oscillator.
              - Amplitude Modulate oscillator. 
-             - Specifiy oscillator range. 
+             - Specifiy oscillator amplitude range. 
              - Output name (patch cord). 
 
 	Intereface:
+             - Module
              - output variable.
              - frequency.
              - waveform.
              - AM signal.
              - FM signal.
+			 - Minimum amplitude
+             - Maximum amplitude
 
 	Csound Code:
              
