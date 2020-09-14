@@ -11,19 +11,19 @@ typedef struct{
 	char waveform [SYNTH_MODULE_CHARS];
 	char am_signal[SYNTH_MODULE_CHARS];
 	char fm_signal [SYNTH_MODULE_CHARS];
-	char min_frequency [SYNTH_MODULE_CHARS];
-	char max_frequency [SYNTH_MODULE_CHARS];
+	char min_amp [SYNTH_MODULE_CHARS];
+	char max_amp [SYNTH_MODULE_CHARS];
 } OSCILLATOR_MODULE;
 
 void read_oscillator(OSCILLATOR_MODULE *oscillator_module, int count){
 
-	scanf("%s", oscs[osc_count].signal_out);
-	scanf("%s", oscs[osc_count].frequency);
-	scanf("%s", oscs[osc_count].waveform);
-	scanf("%s", oscs[osc_count].am_signal);
-	scanf("%s", oscs[osc_count].fm_signal);
-	scanf("%s", oscs[osc_count].min_frequency);
-	scanf("%s", oscs[osc_count].max_frequency);
+	scanf("%s", oscillator_module[count].signal_out);
+	scanf("%s", oscillator_module[count].frequency);
+	scanf("%s", oscillator_module[count].waveform);
+	scanf("%s", oscillator_module[count].am_signal);
+	scanf("%s", oscillator_module[count].fm_signal);
+	scanf("%s", oscillator_module[count].min_amp);
+	scanf("%s", oscillator_module[count].max_amp);
 
 	if(count >= MAXIMUM_MODULES){
 		fprintf(stderr,
@@ -32,17 +32,17 @@ void read_oscillator(OSCILLATOR_MODULE *oscillator_module, int count){
 	}
 }
 
-void write_csound_oscillator(OSCILLATOR_MODULE oscillator_module){
+void print_csound_oscillator(OSCILLATOR_MODULE oscillator_module){
 
-	float min_frequency, max_frequency;
-	float mo2;
+	float min_amp, max_amp;
+	float rescale_output;
 
-	printf("%s oscillator ", oscillator_module.sig_out);
+	printf("%s oscillator ", oscillator_module.signal_out);
 
-	if(!strcmp(oscillator_module.sig_fm_signal, "NONE"))
+	if(!strcmp(oscillator_module.fm_signal, "NONE"))
 		printf("%s, ", oscillator_module.frequency);
 	else
-		printf("%s * (1.0 + %s), ", oscillator_module.frequency, oscillator_module.fm_signal;
+		printf("%s * (1.0 + %s), ", oscillator_module.frequency, oscillator_module.fm_signal);
 
 	if(!strcmp(oscillator_module.am_signal, "NONE"))
 		printf("1.0, ");
@@ -66,24 +66,25 @@ void write_csound_oscillator(OSCILLATOR_MODULE oscillator_module){
 		printf("ipulse");
 
 	else{
-		fprintf(not_valid, "oscillator_module: %s is unknown"
+		fprintf(stderr, "oscillator_module: %s is unknown"
 			"- using sinewave instead\n", oscillator_module.waveform);
 		printf("isine\n");
 	}
 
-	sscanf(oscillator_module.min_amp, "%f", &min_amp;
-	sscanf(oscillator_module.max_amp, "%f", &max_amp;
+	sscanf(oscillator_module.min_amp, "%f", &min_amp);
+	sscanf(oscillator_module.max_amp, "%f", &max_amp);
 
-	if(oscillator_module.min_amp != -1.0 || oscillator_module.max_amp != 1.0){
+	if(min_amp != -1.0 || max_amp != 1.0){
 
 		rescale_output = (min_amp - max_amp) / 2.0; 
 
 		printf("%s = %s + (%f*%s + %f)\n",
-				oscillator_module.output_signal, 
+				oscillator_module.signal_out, 
 				oscillator_module.min_amp, 
 				oscillator_module.max_amp,
 				rescale_output,
-				oscillator_module.output_signal,
+				oscillator_module.signal_out,
 				rescale_output);
+	}
 }
 #endif
